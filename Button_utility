@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+
+class AppButton extends StatelessWidget {
+  final String label;
+  final double roundness;
+
+  final EdgeInsets padding;
+  final VoidCallback onPressed;
+
+  const AppButton({
+    Key? key,
+    required this.label,
+    this.roundness = 10,
+    this.padding = const EdgeInsets.symmetric(vertical: 24),
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.maxFinite,
+      child: MaterialButton(
+          visualDensity: VisualDensity.compact,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(roundness),
+          ),
+          color: const Color.fromARGB(255, 54, 157, 241),
+          textColor: Colors.black,
+          elevation: 0.0,
+          padding: padding,
+          child: Stack(
+            fit: StackFit.passthrough,
+            children: <Widget>[
+              Center(
+                child: Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      // fontSize: 18,
+                      // fontWeight: fontWeight,
+                      ),
+                ),
+              ),
+              // if (trailingWidget != null)
+              //   Positioned(
+              //     top: 0,
+              //     right: 25,
+              //     child: trailingWidget,
+              //   )
+            ],
+          ),
+          onPressed: onPressed),
+    );
+  }
+}
